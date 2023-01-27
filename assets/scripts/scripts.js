@@ -2,8 +2,8 @@
 
 // declare all variables
 
-let dayStart = '';
-let dayEnd = '';
+let dayStart = 9;
+let dayEnd = 17;
 let dayLength = [];
 let scheduleHours = document.querySelector("#hour-boxes");
 let timesArrow = '';
@@ -19,22 +19,18 @@ let details = '';
 $('#currentDay').text("Today is " + dayjs().format("MMM DD, YYYY") + ", and here is your schedule");
 $('#currentTime').text("It is currently " + dayjs().format("hh:mm a"));
 
-$(function init() {
-    //grab the localStorage and apply to the rooms.
-    for (i = 0; i < schedules.length; i++) {
-        if(schedules[i][0] == dayjs().format("DD-MM-YYYY")) {
-            
-            scheduleToday.push([schedules[i][1][0],schedules[i][1][1]]);
-        }
-    }
-}
-);
 
 // write a script to populate all the hours of the day
 // note that dayStart and dayEnd are variables in order to provide workday-hour select.
-$(function () {
-    dayStart = 9;
-    dayEnd = 17;
+$(function renderDay() {
+
+    // grab the localStorage and apply to the rooms.
+    for (i = 0; i < schedules.length; i++) {
+        if(schedules[i][0] == dayjs().format("DD-MM-YYYY")) {
+                
+           scheduleToday.push([schedules[i][1][0],schedules[i][1][1]]);
+        }
+    };
     for (let i = dayStart; i <= dayEnd; i++) {
         // determine if time is past or present
         if(i < dayjs().format("HH")) {
@@ -44,16 +40,14 @@ $(function () {
         } else if (i > dayjs().format("HH")) {
             timesArrow ="future";
         };
-        
+        details = "";
         for (let j = 0; j < scheduleToday.length; j++) {
-            if(i == parseInt(scheduleToday[j][0])) {
+            if(i === parseInt(scheduleToday[j][0])) {
                 details = scheduleToday[j][1];
-                console.log("Working!");
-            } else {
-                details = "";
+                console.log("Pass: " + i, scheduleToday[j][0]);
             }
         };
-
+        console.log(details);
         dayDiv = `<div id="hour-${i}" class="row time-block ${timesArrow}">
     <div class="col-2 col-md-1 hour text-center py-3">${i}AM</div>
     <textarea class="col-8 col-md-10 description" rows="3">${details}</textarea>
@@ -75,7 +69,7 @@ timeBlock.on('click', '.saveBtn', function (event) {
     for(i = 0; i < scheduleToday.length; i++){
         if(btnHour == scheduleToday[0][0]) {
             console.log("Sorry, you can't have more than one");
-            return;
+            renderDay();
         }
     }
     
