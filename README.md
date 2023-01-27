@@ -1,16 +1,17 @@
-# bootcamp-boilerplate
+# Block My Hours Baby
 
 ## Task
 
-Add a brief description that includes something cut from the challenge description
+Create a simple calendar application that allows a user to save events for each hour of the day by modifying starter code. This app will run in the browser and feature dynamically updated HTML and CSS powered by jQuery.
 
 ## Usage
 
-Describe the usage of the app.
+This planner, which can be found [here](https://omgthegreenranger.github.io/block-my-hours-baby/), allows you enter an event on an hour of the day. It will also inform you if you are already beyond the time of day.
 
-*include a link to the page*
-*include an image of the app*
+The script is designed to be extendable to multiple days, though the feature is not yet developed (time limited for the project).
+
+![Screensehot of day planner, called "Block My Hours, Baby!"](./assets/images/screenshot.png)
 
 ## Further details
 
-Add anything else that you'd want to include, including references or links to other info.
+None at the moment.
